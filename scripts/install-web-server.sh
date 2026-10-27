@@ -5,11 +5,10 @@ set -euxo pipefail
 
 exec > >(tee /var/log/user-data.log | logger -t user-data -s 2>/dev/console) 2>&1
 
-# Install and start Apache on Amazon Linux 2023
 dnf install -y httpd
 systemctl enable --now httpd
 
-# Create a page that identifies the responding EC2 instance
+
 cat > /var/www/html/index.html <<'HTML'
 <!DOCTYPE html>
 <html lang="en">
